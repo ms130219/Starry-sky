@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            background-color: #000;
+        }
+
+        span {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            background: url("star.gif") no-repeat;
+            background-size: 100% 100%;
+            position: absolute;
+            animation: flash 1s alternate infinite;
+        }
+
+        @keyframes flash {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        span:hover {
+            transform:scale(3,3) rotate(-45deg)!important;
+            transition: all 1s;
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        var clientH = document.documentElement.clientHeight;
+        var clientW = document.documentElement.clientWidth;
+
+        for (var i = 0; i < 69; i++) {
+            //创建星星
+            var span = document.createElement('span');
+            document.body.appendChild(span);
+            //随机坐标
+            var x = parseInt(Math.random() * clientW);
+            var y = parseInt(Math.random() * clientH);
+            span.style.left = x + 'px';
+            span.style.top = y + 'px';
+            //随机缩放
+            var scale = Math.random() * 1.5;
+            span.style.transform = 'scale(' + scale + ',' + scale + ')';
+
+            //延时闪烁
+            var rate = Math.random() * 1.5;
+            span.style.animationDelay = rate + 's';
+        }
+    }
+</script>
+</body>
+</html>
